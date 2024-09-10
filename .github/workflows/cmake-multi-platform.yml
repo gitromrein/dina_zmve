@@ -78,13 +78,13 @@ jobs:
     - name: Archive master
       uses: actions/upload-artifact@v4
       with:
-        name: slb-${{ matrix.os }}-${{ matrix.c_compiler}}-${{ matrix.build_type }}
+        name: slb-${{ matrix.os }}-${{ matrix.c_compiler}}-${{ matrix.build_type }}-master
         path: ${{ github.workspace }}/src/master.elf
         retention-days: 5
 
     - name: Archive Slave
       uses: actions/upload-artifact@v4
       with:
-        name: slb-${{ matrix.os }}-${{ matrix.c_compiler}}-${{ matrix.build_type }}
+        name: slb-${{ matrix.os }}-${{ matrix.c_compiler}}-${{ matrix.build_type }}-slave
         path: ${{ github.workspace }}/src/slave.elf
         retention-days: 5
