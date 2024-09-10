@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     #runs-on: ${{ matrix.os }}
-    runs-on: [self-hosted]
+    #runs-on: [self-hosted]
     
     strategy:
       # Set fail-fast to false to ensure that feedback is delivered for all matrix combinations. Consider changing this to true when your workflow is stable.
@@ -31,12 +31,15 @@ jobs:
           - os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
+            runner_label: self-hosted-wjr
           - os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
+            runner_label: self-hosted-wjr
           - os: ubuntu-latest
             c_compiler: clang
             cpp_compiler: clang++
+            runner_label: self-hosted-wjr
           - build_type: Debug
             is_debug: true
             is_release: false
@@ -50,6 +53,8 @@ jobs:
             c_compiler: clang
           - os: ubuntu-latest
             c_compiler: cl
+
+    runs-on: ${{ matrix.runner_label }}
 
     steps:
     - uses: actions/checkout@v4
