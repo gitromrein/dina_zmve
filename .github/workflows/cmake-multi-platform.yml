@@ -79,5 +79,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: slb-${{ matrix.os }}-${{ matrix.c_compiler}}-${{ matrix.build_type }}
-        path: ${{ github.workspace }}/src/master.elf
+        path: ${{ github.workspace }}/src/*.elf
         retention-days: 5
