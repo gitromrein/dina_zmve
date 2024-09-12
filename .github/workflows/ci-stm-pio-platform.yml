@@ -2,7 +2,7 @@ name: SonarCloud
 on:
   push:
     branches:      
-      - feature/ci_stm_pio      
+      - ci_stm_pio      
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
