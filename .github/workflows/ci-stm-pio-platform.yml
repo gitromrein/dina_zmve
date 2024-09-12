@@ -78,7 +78,7 @@ jobs:
       
       - name: Run build-wrapper
         run: |
-          #cd $PROGRAM_PATH
+          cd $PROGRAM_PATH
           build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
           pio run
       - name: List files in output directory
@@ -92,3 +92,5 @@ jobs:
             --define sonar.cfamily.compile-commands="${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json" \
             --define sonar.projectKey=gitromrein_dina_zmve \
             --define sonar.organization=gitromrein
+      - name: List files in output directory 2
+        run: ls -R
