@@ -75,9 +75,11 @@ jobs:
          pio check
       - name: Install sonar-scanner and build-wrapper
         uses: SonarSource/sonarcloud-github-c-cpp@v3
+      - name: Add to PATH
+        run: echo $PROGRAM_PATH >> $GITHUB_PATH
       - name: Run build-wrapper
         run: |
-          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }}$PROGRAM_PATH pio run
+          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} pio run
       - name: Archive build-wrapper output
         uses: actions/upload-artifact@v3
         with:
