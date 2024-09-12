@@ -69,18 +69,29 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      - name: Run Code Analyse CppCheck
-        run: |
-         cd ${{ github.workspace }}/src/ioc/master/ 
-         pio check
+
       - name: Install sonar-scanner and build-wrapper
         uses: SonarSource/sonarcloud-github-c-cpp@v3
+      
       - name: Set program path
-        run: echo "PROGRAM_PATH=${{ github.workspace }}/src/ioc/master" >> $GITHUB_ENV
+        run: echo "PROGRAM_PATH=${{ github.workspace }}\src\ioc\master\pio" >> $GITHUB_ENV
+
       - name: SonarCloud Analysis with Wrapper
         run: |
           sonar-scanner \
-          -Dsonar.sources=$PROGRAM_PATH
+            -Dsonar.projectKey=your_project_key \
+            -Dsonar.organization=your_organization \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+            sonar-scanner \
+            -Dsonar.sources=$PROGRAM_PATH
+
+      - name: Run program with SonarCloud wrapper
+        run: |
+          cd $PROGRAM_PATH
+          build-wrapper-win-x86-64.exe --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} pio run
+      
+      
       - name: Run build-wrapper
         run: |
           cd $PROGRAM_PATH
