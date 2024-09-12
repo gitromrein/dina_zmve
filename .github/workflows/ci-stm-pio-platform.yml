@@ -1,10 +1,9 @@
 name: SonarCloud
 on:
   push:
-    branches:      
-      - feature/*      
+    branches: [ "feature/ci_stm_pio" ]
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches: [ "feature/ci_stm_pio" ]
 jobs:
   build:
     name: build PlatformIO
