@@ -75,12 +75,12 @@ jobs:
       
       - name: Set program path
         run: echo "PROGRAM_PATH=${{ github.workspace }}/src/ioc/master" >> $GITHUB_ENV
-      - name: CD
-        run: cd $PROGRAM_PATH
       - name: Run build-wrapper
         run: |
-          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
-          pio run
+          cd $PROGRAM_PATH
+          build-wrapper-linux-x86-64 
+          #--out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} \
+          #pio run
       - name: List files in output directory
         run: ls -R
       - name: Run sonar-scanner
