@@ -20,7 +20,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install --upgrade platformio
       - name: Run build
-        run: ${{ github.workspace }}/src/ioc/master/pio run
+        run: ${{ github.workspace }}/src/ioc/master/ pio run
         
   check:
     name: run static code analysis cppcheck
@@ -34,7 +34,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install --upgrade platformio
       - name: Run Code Analyse CppCheck
-        run: ${{ github.workspace }}/src/ioc/master/pio check
+        run: ${{ github.workspace }}/src/ioc/master/ pio check
 
   build_and_check_ubuntu_sonar:
     name: build plattformio and run static code analysis on sonarcloud.io   
@@ -60,7 +60,7 @@ jobs:
         uses: SonarSource/sonarcloud-github-c-cpp@v3
       - name: Run build-wrapper
         run: |
-          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }}${{ github.workspace }}/src/ioc/master/pio run
+          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }}${{ github.workspace }}/src/ioc/master/ pio run
       - name: Archive build-wrapper output
         uses: actions/upload-artifact@v3
         with:
