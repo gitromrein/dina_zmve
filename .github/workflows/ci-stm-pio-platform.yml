@@ -74,7 +74,7 @@ jobs:
         uses: SonarSource/sonarcloud-github-c-cpp@v3
       
       - name: Set program path
-        run: echo "PROGRAM_PATH=${{ github.workspace }}/src/ioc/master/pio" >> $GITHUB_ENV
+        run: echo "PROGRAM_PATH=${{ github.workspace }}/src/ioc/master" >> $GITHUB_ENV
       
       - name: Run build-wrapper
         run: |
