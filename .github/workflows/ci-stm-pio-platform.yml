@@ -21,6 +21,10 @@ jobs:
           pip install --upgrade platformio
       - shell: sh
         run: ls
+      - shell: sh
+        run: cd src
+      - shell: sh
+        run: ls  
       - name: Run build
         run: ${{ github.workspace }} pio run
         
