@@ -70,7 +70,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Run Code Analyse CppCheck
-        run: pio check
+        run: |
+         cd ${{ github.workspace }}/src/ioc/master/ 
+         pio check
       - name: Install sonar-scanner and build-wrapper
         uses: SonarSource/sonarcloud-github-c-cpp@v3
       - name: Run build-wrapper
