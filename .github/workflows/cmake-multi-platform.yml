@@ -28,17 +28,9 @@ jobs:
         build_type: [Debug, Release]
         c_compiler: [gcc, clang, cl]
         include:
-          - os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
-            runner_label: self-hosted-wjr
           - os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
-            runner_label: self-hosted-wjr
-          - os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
             runner_label: self-hosted-wjr
           - build_type: Debug
             is_debug: true
@@ -46,13 +38,6 @@ jobs:
           - build_type: Release
             is_debug: false
             is_release: true
-        exclude:
-          - os: windows-latest
-            c_compiler: gcc
-          - os: windows-latest
-            c_compiler: clang
-          - os: ubuntu-latest
-            c_compiler: cl
 
     runs-on: ${{ matrix.runner_label }}
     env:
