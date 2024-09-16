@@ -24,7 +24,7 @@ jobs:
       #
       # To add more build types (Release, Debug, RelWithDebInfo, etc.) customize the build_type list.
       matrix:
-        runner: [self-hosted-tas, self-hosted-wjr]
+        runner: [self-hosted-wjr]
         build_type: [Debug, Release]
         include:
           - build_type: Debug
@@ -57,10 +57,6 @@ jobs:
         cmake -B ${{ steps.strings.outputs.build-output-dir }}/src
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         -S ${{ github.workspace }}/src
-
-    #- name: Build
-    #  # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
-    #  run: cmake --build ${{ steps.strings.outputs.build-output-dir }}/src --config ${{ matrix.build_type }}
 
     - name: Install sonar-scanner and build-wrapper
       uses: SonarSource/sonarcloud-github-c-cpp@v3
