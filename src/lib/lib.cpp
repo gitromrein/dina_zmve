@@ -7,7 +7,10 @@ int myfun(bool b, int (*callback)(int)) {
   } else {
     num = 15 + num;
   }
-  if (callback != 0) {}
+  if (callback != 0) {
+    ;
+    ;//semicollon
+  }
   if (callback == nullptr) {
     return (*callback)(3); // intentional nullptr dereference
   } else {
