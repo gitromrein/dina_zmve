@@ -4,9 +4,9 @@ name: CMake on multiple platforms
 
 on:
   push:
-    branches: [ "feature/ci_self_hosted" ]
+    branches: [ "master, feature/ci_self_hosted" ]
   pull_request:
-    branches: [ "feature/ci_self_hosted" ]
+    branches: [ "master, feature/ci_self_hosted" ]
 
 jobs:
   build:
