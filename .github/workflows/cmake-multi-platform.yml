@@ -31,7 +31,7 @@ jobs:
       #
       # To add more build types (Release, Debug, RelWithDebInfo, etc.) customize the build_type list.
       matrix:
-        runner: [self-hosted-zmve]
+        runner: [self-hosted-raspi64]
         build_type: [Debug, Release]
         include:
           - build_type: Debug
