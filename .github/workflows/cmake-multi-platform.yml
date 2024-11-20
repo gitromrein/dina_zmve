@@ -117,3 +117,7 @@ jobs:
     - name: "List files"
       shell: bash
       run: ls -l Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/
+
+    - name: ST-LINK Probe
+      run: |
+        st-info --probe
