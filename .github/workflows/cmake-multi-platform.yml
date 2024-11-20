@@ -31,7 +31,7 @@ jobs:
       #
       # To add more build types (Release, Debug, RelWithDebInfo, etc.) customize the build_type list.
       matrix:
-        runner: [self-hosted-wjr, self-hosted-zmve]
+        runner: [self-hosted-zmve]
         build_type: [Debug, Release]
         include:
           - build_type: Debug
@@ -77,3 +77,34 @@ jobs:
       run: |
           sonar-scanner --define sonar.cfamily.compile-commands="${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json"
 
+    - name: Archive master Debug
+      uses: actions/upload-artifact@v4
+      if: ${{ matrix.is_debug }}
+      with:
+        name: master-${{ matrix.build_type }}-${{ matrix.runner }}
+        path: ${{ github.workspace }}/src/master.elf
+        retention-days: 5
+
+    - name: Archive Slave Debug
+      uses: actions/upload-artifact@v4
+      if: ${{ matrix.is_debug }}
+      with:
+        name: slave-${{ matrix.build_type }}-${{ matrix.runner }}
+        path: ${{ github.workspace }}/src/slave.elf
+        retention-days: 5
+
+    - name: Archive master Release
+      uses: actions/upload-artifact@v4
+      if: ${{ matrix.is_release }}
+      with:
+        name: master-${{ matrix.build_type }}-${{ matrix.runner }}
+        path: ${{ github.workspace }}/src/master.elf
+        retention-days: 30
+
+    - name: Archive Slave Release
+      uses: actions/upload-artifact@v4
+      if: ${{ matrix.is_release }}
+      with:
+        name: slave-${{ matrix.build_type }}-${{ matrix.runner }}
+        path: ${{ github.workspace }}/src/slave.elf
+        retention-days: 30
