@@ -111,11 +111,11 @@ jobs:
     
     - uses: actions/download-artifact@v4
       with: 
-        name: slb-${{ matrix.os }}-${{ matrix.c_compiler}}-${{ matrix.build_type }}
-        path: Downloads/slb-${{ matrix.os }}-${{ matrix.c_compiler}}-${{ matrix.build_type }}
+        name: slave-${{ matrix.build_type }}-${{ matrix.runner }}
+        path: Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}
         run-id: ${{ github.event.workflow_run.id }}
         github-token: ${{ github.token }}
 
     - name: "List files"
       shell: bash
-      run: ls -l Downloads/slb-${{ matrix.os }}-${{ matrix.c_compiler}}-${{ matrix.build_type }}/
+      run: ls -l Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/
