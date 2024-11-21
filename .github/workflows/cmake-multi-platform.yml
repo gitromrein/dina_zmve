@@ -37,9 +37,16 @@ jobs:
           - build_type: Debug
             is_debug: true
             is_release: false
+            is_stlink: true
+            is_openocd: false
+            is_jlink: false
           - build_type: Release
             is_debug: false
             is_release: true
+            is_stlink: true
+            is_openocd: false
+            is_jlink: false
+            
             
     runs-on: ${{ matrix.runner }}
     env:
@@ -152,9 +159,11 @@ jobs:
       run: |
         arm-none-eabi-objcopy -O ihex Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/slave.elf Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/slave.hex
 
-    - name: Flash Slave Debug
-      if: ${{ matrix.is_debug }}
+    - name: Flash ST-LINK Slave Debug
+      if: (${{ matrix.is_debug }} && ${{ matrix.is_stlink }})
       run: |
          st-flash --format ihex write Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/slave.hex
+
+
       
         
