@@ -37,14 +37,14 @@ jobs:
           - build_type: Debug
             is_debug: true
             is_release: false
-            is_stlink: true
-            is_openocd: false
+            is_stlink: false
+            is_openocd: true
             is_jlink: false
           - build_type: Release
             is_debug: false
             is_release: true
-            is_stlink: true
-            is_openocd: false
+            is_stlink: false
+            is_openocd: true
             is_jlink: false
             
             
@@ -164,6 +164,12 @@ jobs:
       run: |
          st-flash --format ihex write Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/slave.hex
 
+    - name: Flash openocd Slave Debug
+      if: (${{ matrix.is_debug }} && ${{ matrix.is_openocd }})
+      run: |
+         openocd -f interface/stlink.cfg -f target/stm32h7x.cfg \
+         -c "program Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/slave.elf verify reset exit"
 
+        
       
         
