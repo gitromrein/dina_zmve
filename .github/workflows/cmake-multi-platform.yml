@@ -32,7 +32,8 @@ jobs:
       # To add more build types (Release, Debug, RelWithDebInfo, etc.) customize the build_type list.
       matrix:
         runner: [self-hosted-raspi64]
-        build_type: [Debug, Release]
+        #build_type: [Debug, Release]
+        build_type: [Release]
         include:
           - build_type: Debug
             is_debug: true
@@ -148,3 +149,6 @@ jobs:
     - name: ST-LINK Probe
       run: |
         st-info --probe
+    - name: ELF to HEX
+      run: |
+        arm-none-eabi-objcopy -O ihex your_firmware.elf your_firmware.hex
