@@ -32,8 +32,7 @@ jobs:
       # To add more build types (Release, Debug, RelWithDebInfo, etc.) customize the build_type list.
       matrix:
         runner: [self-hosted-raspi64]
-        #build_type: [Debug, Release]
-        build_type: [Release]
+        build_type: [Debug, Release]
         include:
           - build_type: Debug
             is_debug: true
@@ -151,4 +150,4 @@ jobs:
         st-info --probe
     - name: ELF to HEX
       run: |
-        arm-none-eabi-objcopy -O ihex your_firmware.elf your_firmware.hex
+        arm-none-eabi-objcopy -O ihex slave-${{ matrix.build_type }}-${{ matrix.runner }}.elf slave-${{ matrix.build_type }}-${{ matrix.runner }}.hex
