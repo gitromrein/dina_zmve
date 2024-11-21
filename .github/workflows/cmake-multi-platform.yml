@@ -150,4 +150,4 @@ jobs:
         st-info --probe
     - name: ELF to HEX
       run: |
-        arm-none-eabi-objcopy -O ihex slave-${{ matrix.build_type }}-${{ matrix.runner }}.elf slave-${{ matrix.build_type }}-${{ matrix.runner }}.hex
+        arm-none-eabi-objcopy -O ihex Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/slave.elf Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/slave.hex
