@@ -160,13 +160,13 @@ jobs:
         arm-none-eabi-objcopy -O ihex Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/slave.elf Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/slave.hex
 
     - name: Flash ST-LINK Slave Debug
-      if: ${{ matrix.is_debug }} && ${{ matrix.is_stlink }}
+      if: ${{ matrix.is_debug }}
       run: |
          st-flash --format ihex write Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/slave.hex
 
-    - name: openocd Probe
-      run: |
-        openocd -f interface/stlink.cfg -f target/stm32h7x.cfg  
+    #- name: openocd Probe
+    #  run: |
+    #    openocd -f interface/stlink.cfg -f target/stm32h7x.cfg  
     - name: Flash openocd Slave Debug
       if: ${{ matrix.is_debug }}
       run: |
