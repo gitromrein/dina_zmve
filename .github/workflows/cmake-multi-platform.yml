@@ -151,3 +151,10 @@ jobs:
     - name: ELF to HEX
       run: |
         arm-none-eabi-objcopy -O ihex Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/slave.elf Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/slave.hex
+
+    - name: Flash Slave Debug
+      if: ${{ matrix.is_debug }}
+      run: |
+         st-flash --format ihex write Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/slave.hex
+      
+        
