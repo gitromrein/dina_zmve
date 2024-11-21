@@ -113,6 +113,20 @@ jobs:
         name: slave-${{ matrix.build_type }}-${{ matrix.runner }}
         path: ${{ github.workspace }}/src/slave.elf
         retention-days: 30
+
+    - name: Clean artifacts directory
+      run: |
+        ARTIFACTS_DIR=Downloads
+        if [ ! -d "$ARTIFACTS_DIR" ]; then
+          echo "Das Verzeichnis $ARTIFACTS_DIR existiert nicht. Es wird erstellt."
+          mkdir -p "$ARTIFACTS_DIR"
+        fi
+        if [ "$(ls -A $ARTIFACTS_DIR)" ]; then
+          echo "Das Verzeichnis $ARTIFACTS_DIR enthält Dateien. Es wird bereinigt."
+          rm -rf "$ARTIFACTS_DIR/*"
+        else
+          echo "Das Verzeichnis $ARTIFACTS_DIR ist bereits leer."
+        fi
     
     - uses: actions/download-artifact@v4
       with: 
