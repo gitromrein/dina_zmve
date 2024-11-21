@@ -114,6 +114,10 @@ jobs:
         path: ${{ github.workspace }}/src/slave.elf
         retention-days: 30
 
+    - name: "List files 0"
+      shell: bash
+      run: ls
+      
     - name: Clean artifacts directory
       run: |
         ARTIFACTS_DIR=Downloads
@@ -128,12 +132,16 @@ jobs:
           echo "Das Verzeichnis $ARTIFACTS_DIR ist bereits leer."
         fi
     
+    - name: "List files1"
+      shell: bash
+      run: ls
+      
     - uses: actions/download-artifact@v4
       with: 
         name: slave-${{ matrix.build_type }}-${{ matrix.runner }}
         path: Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}
 
-    - name: "List files"
+    - name: "List files2"
       shell: bash
       run: ls -l Downloads/slave-${{ matrix.build_type }}-${{ matrix.runner }}/
 
